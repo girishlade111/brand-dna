@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      (function() {
+        try {
+          var targetObj = typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : null);
+          if (targetObj) {
+            var origFetch = typeof targetObj.fetch === 'function' ? targetObj.fetch.bind(targetObj) : null;
+            var activeFetch = origFetch;
+            try {
+              Object.defineProperty(targetObj, 'fetch', {
+                get: function() {
+                  return activeFetch || origFetch;
+                },
+                set: function(fn) {
+                  activeFetch = typeof fn === 'function' ? fn : origFetch;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (_) {
+              if (typeof Window !== 'undefined' && Window.prototype) {
+                try {
+                  Object.defineProperty(Window.prototype, 'fetch', {
+                    get: function() {
+                      return activeFetch || origFetch;
+                    },
+                    set: function(fn) {
+                      activeFetch = typeof fn === 'function' ? fn : origFetch;
+                    },
+                    configurable: true,
+                    enumerable: true
+                  });
+                } catch (__) {}
+              }
+            }
+          }
+        } catch (_) {}
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brand DNA // The Invisible Instrument — WCAG-Verified Design Tokens Extractor</title>
+    <meta
+      name="description"
+      content="Extract colors, typography hierarchy, logos, and WCAG-verified W3C design tokens from any live URL into production-ready code in seconds. Precision token workbench."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Brand DNA // The Invisible Instrument — WCAG-Verified Design Tokens Extractor" />
+    <meta
+      property="og:description"
+      content="Extract colors, typography hierarchy, logos, and WCAG-verified W3C design tokens from any live URL into production-ready code in seconds."
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Brand DNA — The Invisible Instrument Wordmark and Design Token Pipeline" />
+    <meta property="og:site_name" content="Brand DNA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Brand DNA // The Invisible Instrument — WCAG-Verified Design Tokens Extractor" />
+    <meta
+      name="twitter:description"
+      content="Extract colors, typography hierarchy, logos, and WCAG-verified W3C design tokens from any live URL into production-ready code in seconds."
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://branddna.design/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Brand DNA",
+          "alternateName": "The Invisible Instrument",
+          "applicationCategory": "DesignApplication",
+          "operatingSystem": "All",
+          "url": "https://branddna.design",
+          "description": "Precision AI-powered brand design system extractor and token workbench converting URLs, PDFs, and assets into production design systems in seconds.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Multi-Modal Ingestion Engine (URL, PDF, Asset Drop)",
+            "Semantic Color Intelligence with WCAG 2.1 Contrast Matrix",
+            "Typography Hierarchy & Google Fonts Dynamic Resolver",
+            "Logo Studio & Deterministic Vector Pixel Engine",
+            "W3C Design Tokens Engine",
+            "AI Brand Voice & Copywriting Synthesis",
+            "Multi-Format Export Suite (CSS, Tailwind, Tokens JSON, DESIGN.md)",
+            "Public Sharing & Visual Diff Versioning"
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Brand DNA // The Invisible Instrument",
+          "url": "https://branddna.design",
+          "logo": "https://branddna.design/og-image.png",
+          "founder": {
+            "@type": "Person",
+            "name": "Girish"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Support",
+            "email": "support@branddna.design",
+            "url": "https://branddna.design/contact"
+          }
+        }
+      ]
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

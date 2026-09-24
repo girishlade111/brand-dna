@@ -1,0 +1,119 @@
+---
+import CookieBanner from '../components/CookieBanner.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  robots?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Brand DNA // The Invisible Instrument — WCAG-Verified Design Tokens Extractor",
+  description = "Extract colors, typography hierarchy, logos, and WCAG-verified W3C design tokens from any live URL into production-ready code in seconds. Precision token workbench.",
+  robots = "index, follow",
+  canonical = Astro.url.href
+} = Astro.props;
+
+const appUrl = import.meta.env.PUBLIC_APP_URL || "/app";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    
+    <!-- OpenGraph Metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Brand DNA — The Invisible Instrument Wordmark and Design Token Pipeline" />
+    <meta property="og:site_name" content="Brand DNA" />
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Google Fonts Preconnect & Stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/src/styles/styles.css" />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Brand DNA",
+          "alternateName": "The Invisible Instrument",
+          "applicationCategory": "DesignApplication",
+          "operatingSystem": "All",
+          "url": "https://branddna.design",
+          "description": "Precision AI-powered brand design system extractor and token workbench converting URLs, PDFs, and assets into production design systems.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Brand DNA // The Invisible Instrument",
+          "url": "https://branddna.design",
+          "logo": "https://branddna.design/og-image.png",
+          "founder": {
+            "@type": "Person",
+            "name": "Girish"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Support",
+            "email": "support@branddna.design",
+            "url": "https://branddna.design/contact"
+          }
+        }
+      ]
+    </script>
+
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col selection:bg-[var(--foreground)] selection:text-[var(--background)]">
+    <slot />
+    <CookieBanner />
+  </body>
+</html>

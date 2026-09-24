@@ -1,0 +1,277 @@
+---
+const cssContent = `:root {
+  /* Brand DNA // Extracted Tokens for Stripe */
+  --color-primary: #0A0A0A;
+  --color-accent: #635BFF;
+  --color-surface: #F4EFE6;
+  --color-surface-raised: #EDE8DE;
+  --color-alert: #8B1A1A;
+
+  /* Typography Scale */
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Libre Baskerville", serif;
+  --font-mono: "Courier Prime", monospace;
+
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-8: 32px;
+  --space-16: 64px;
+
+  /* Surface Rules */
+  --radius: 0px;
+  --border-width: 1px;
+}`;
+
+const tailwindContent = `/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          DEFAULT: '#635BFF',
+          ink: '#0A0A0A',
+          washi: '#F4EFE6',
+          surface: '#EDE8DE',
+          hanko: '#8B1A1A'
+        }
+      },
+      fontFamily: {
+        display: ['"Cormorant Garamond"', 'serif'],
+        body: ['"Libre Baskerville"', 'serif'],
+        mono: ['"Courier Prime"', 'monospace']
+      },
+      borderRadius: {
+        none: '0px',
+        DEFAULT: '0px'
+      }
+    }
+  }
+};`;
+
+const jsonContent = `{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "color": {
+    "primary": { "$value": "#0A0A0A", "$type": "color" },
+    "accent": { "$value": "#635BFF", "$type": "color" },
+    "surface": { "$value": "#F4EFE6", "$type": "color" },
+    "alert": { "$value": "#8B1A1A", "$type": "color" }
+  },
+  "typography": {
+    "heading-1": {
+      "fontFamily": { "$value": "Cormorant Garamond" },
+      "fontSize": { "$value": "48px" },
+      "fontWeight": { "$value": "600" },
+      "letterSpacing": { "$value": "-0.02em" }
+    }
+  }
+}`;
+
+const designMdContent = `# BRAND DESIGN SYSTEM PROMPT (Extracted by Brand DNA)
+
+## Visual Identity: Sumi Ink & Structural Minimalism
+- **Canvas Base**: #F4EFE6 (Washi Paper)
+- **Primary Ink**: #0A0A0A (Sumi Ink)
+- **Brand Accent**: #635BFF (Indigo)
+- **Hanko Seal**: #8B1A1A (Primary Action / Hover)
+- **Border Radius**: 0px strictly. Never output rounded pills or arbitrary gradients.
+
+## Core Directives
+1. Use Cormorant Garamond for display headlines with tight tracking (-0.02em).
+2. Use Courier Prime for all data chips, navigation links, and button labels.
+3. Every button label must follow the bracketed format: [ ACTION ].
+4. Verify all text against WCAG 2.1 AA/AAA relative luminance standards.`;
+---
+
+<section id="exports" class="py-16 md:py-24 border-b border-[var(--border-subtle)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-[var(--border-subtle)]">
+      <div>
+        <div class="font-mono-ui text-xs text-[var(--muted)] uppercase tracking-[0.20em] mb-2">
+          // ZERO RUNTIME OVERHEAD
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl text-[var(--foreground)] tracking-[-0.01em]">
+          Multi-Format Code Exports
+        </h2>
+      </div>
+      <div class="mt-4 md:mt-0 font-mono-ui text-xs text-[var(--muted)]">
+        TOKENS.CSS • TAILWIND.CONFIG.JS • TOKENS.JSON • DESIGN.MD • PDF
+      </div>
+    </div>
+
+    <!-- Code Viewer Box -->
+    <div class="border border-[var(--border)] bg-[var(--surface-raised)]">
+      <!-- Top Bar -->
+      <div class="flex flex-wrap items-center justify-between border-b border-[var(--border)] bg-[var(--surface)] px-2 sm:px-4">
+        <!-- Accessible Tabs -->
+        <div
+          role="tablist"
+          aria-label="Export code formats"
+          class="flex items-center text-[11px] font-mono-ui overflow-x-auto"
+        >
+          <button
+            type="button"
+            role="tab"
+            id="export-astro-tab-css"
+            aria-selected="true"
+            aria-controls="code-css"
+            tabindex="0"
+            class="export-tab-btn active px-3 sm:px-4 py-3 border-r border-[var(--border)] tracking-[0.12em] uppercase bg-[var(--foreground)] text-[var(--background)] font-bold transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-[#8B1A1A] focus-visible:outline-offset-[-2px] focus-visible:z-10"
+            data-target="css"
+          >
+            tokens.css
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="export-astro-tab-tailwind"
+            aria-selected="false"
+            aria-controls="code-tailwind"
+            tabindex="-1"
+            class="export-tab-btn px-3 sm:px-4 py-3 border-r border-[var(--border)] tracking-[0.12em] uppercase text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] font-bold transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-[#8B1A1A] focus-visible:outline-offset-[-2px] focus-visible:z-10"
+            data-target="tailwind"
+          >
+            tailwind.config.js
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="export-astro-tab-tokens"
+            aria-selected="false"
+            aria-controls="code-tokens"
+            tabindex="-1"
+            class="export-tab-btn px-3 sm:px-4 py-3 border-r border-[var(--border)] tracking-[0.12em] uppercase text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] font-bold transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-[#8B1A1A] focus-visible:outline-offset-[-2px] focus-visible:z-10"
+            data-target="tokens"
+          >
+            tokens.json
+          </button>
+          <button
+            type="button"
+            role="tab"
+            id="export-astro-tab-designmd"
+            aria-selected="false"
+            aria-controls="code-designmd"
+            tabindex="-1"
+            class="export-tab-btn px-3 sm:px-4 py-3 tracking-[0.12em] uppercase text-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-[var(--background)] font-bold transition-colors focus:outline-none focus-visible:outline-2 focus-visible:outline-[#8B1A1A] focus-visible:outline-offset-[-2px] focus-visible:z-10"
+            data-target="designmd"
+          >
+            DESIGN.md
+          </button>
+        </div>
+
+        <!-- Copy Action Button -->
+        <div class="py-2">
+          <button
+            id="copy-export-code-btn"
+            type="button"
+            class="btn-bracketed btn-bracketed-primary text-[10px] py-1 px-3"
+          >
+            <span id="copy-btn-label">[ COPY TO CLIPBOARD ]</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Code Tabpanels -->
+      <div class="p-4 sm:p-6 bg-[var(--background)]">
+        <pre
+          id="code-css"
+          role="tabpanel"
+          aria-labelledby="export-astro-tab-css"
+          tabindex="0"
+          class="export-code-panel font-mono-ui text-xs text-[var(--foreground)] overflow-x-auto leading-relaxed focus:outline-none focus-visible:outline-2 focus-visible:outline-[#8B1A1A]"
+        >{cssContent}</pre>
+        <pre
+          id="code-tailwind"
+          role="tabpanel"
+          aria-labelledby="export-astro-tab-tailwind"
+          tabindex="0"
+          class="export-code-panel hidden font-mono-ui text-xs text-[var(--foreground)] overflow-x-auto leading-relaxed focus:outline-none focus-visible:outline-2 focus-visible:outline-[#8B1A1A]"
+        >{tailwindContent}</pre>
+        <pre
+          id="code-tokens"
+          role="tabpanel"
+          aria-labelledby="export-astro-tab-tokens"
+          tabindex="0"
+          class="export-code-panel hidden font-mono-ui text-xs text-[var(--foreground)] overflow-x-auto leading-relaxed focus:outline-none focus-visible:outline-2 focus-visible:outline-[#8B1A1A]"
+        >{jsonContent}</pre>
+        <pre
+          id="code-designmd"
+          role="tabpanel"
+          aria-labelledby="export-astro-tab-designmd"
+          tabindex="0"
+          class="export-code-panel hidden font-mono-ui text-xs text-[var(--foreground)] overflow-x-auto leading-relaxed focus:outline-none focus-visible:outline-2 focus-visible:outline-[#8B1A1A]"
+        >{designMdContent}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const exportTabs = Array.from(document.querySelectorAll('.export-tab-btn'));
+  const codePanels = document.querySelectorAll('.export-code-panel');
+  const copyBtn = document.getElementById('copy-export-code-btn');
+  const copyLabel = document.getElementById('copy-btn-label');
+
+  let currentTab = 'css';
+
+  const activateTab = (targetBtn) => {
+    const target = targetBtn.getAttribute('data-target');
+    currentTab = target;
+
+    exportTabs.forEach((t) => {
+      t.classList.remove('bg-[var(--foreground)]', 'text-[var(--background)]', 'active');
+      t.classList.add('text-[var(--foreground)]');
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
+    });
+
+    targetBtn.classList.add('bg-[var(--foreground)]', 'text-[var(--background)]', 'active');
+    targetBtn.classList.remove('text-[var(--foreground)]');
+    targetBtn.setAttribute('aria-selected', 'true');
+    targetBtn.setAttribute('tabindex', '0');
+    targetBtn.focus();
+
+    codePanels.forEach((p) => p.classList.add('hidden'));
+    const activePanel = document.getElementById(`code-${target}`);
+    if (activePanel) activePanel.classList.remove('hidden');
+  };
+
+  exportTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateTab(tab));
+
+    tab.addEventListener('keydown', (e) => {
+      let targetIndex = null;
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        targetIndex = (index + 1) % exportTabs.length;
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        targetIndex = (index - 1 + exportTabs.length) % exportTabs.length;
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        targetIndex = 0;
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        targetIndex = exportTabs.length - 1;
+      }
+
+      if (targetIndex !== null) {
+        activateTab(exportTabs[targetIndex]);
+      }
+    });
+  });
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      const activePanel = document.getElementById(`code-${currentTab}`);
+      if (activePanel) {
+        navigator.clipboard.writeText(activePanel.textContent || '');
+        if (copyLabel) copyLabel.textContent = '[ ✓ COPIED TO CLIPBOARD ]';
+        setTimeout(() => {
+          if (copyLabel) copyLabel.textContent = '[ COPY TO CLIPBOARD ]';
+        }, 2000);
+      }
+    });
+  }
+</script>

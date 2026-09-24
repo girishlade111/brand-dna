@@ -1,0 +1,76 @@
+---
+const repoName = import.meta.env.PUBLIC_GITHUB_REPO || "brand-muse-kit/brand-dna";
+
+let stars: number | null = null;
+let status = "pending";
+
+try {
+  const res = await fetch(`https://api.github.com/repos/${repoName}`, {
+    headers: {
+      Accept: "application/vnd.github.v3+json",
+      "User-Agent": "Brand-DNA-Landing"
+    }
+  });
+  if (res.ok) {
+    const data = await res.json();
+    if (typeof data.stargazers_count === "number") {
+      stars = data.stargazers_count;
+      status = "live";
+    }
+  }
+} catch (e) {
+  status = "pending";
+}
+---
+
+<section
+  id="social-proof-strip"
+  aria-label="System Trust and Technical Specifications"
+  class="border-b border-[var(--border-subtle)] bg-[var(--surface)] font-mono-ui text-xs text-[var(--muted)]"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 text-[11px]">
+      <!-- GitHub Star Status (Data-Driven / No Fake Numbers) -->
+      <div class="flex items-center gap-3">
+        <span class="w-1.5 h-1.5 bg-emerald-600 dark:bg-emerald-400 inline-block select-none"></span>
+        <a
+          href={`https://github.com/${repoName}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-[var(--foreground)] transition-colors inline-flex items-center gap-2 group"
+        >
+          <span class="text-[var(--foreground)] font-bold tracking-wider">[ GITHUB ]</span>
+          {status === "live" && stars !== null ? (
+            <span class="text-emerald-700 dark:text-emerald-400">
+              ★ {stars.toLocaleString()} STARS
+            </span>
+          ) : (
+            <span class="opacity-70 group-hover:opacity-100">
+              [ REPO: {repoName} — PENDING PUBLIC SYNC ]
+            </span>
+          )}
+          <span class="opacity-50 group-hover:opacity-100">↗</span>
+        </a>
+      </div>
+
+      <!-- Standards & Zero-Telemetry Transparency Signals -->
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1 tracking-wider uppercase text-[10px]">
+        <span class="text-[var(--foreground)]">
+          [ 100% DETERMINISTIC ]
+        </span>
+        <span class="hidden sm:inline text-[var(--border-subtle)]">•</span>
+        <span>
+          W3C DTCG SPEC COMPLIANT
+        </span>
+        <span class="hidden sm:inline text-[var(--border-subtle)]">•</span>
+        <span>
+          WCAG 2.1 AA/AAA RELATIVE LUMINANCE
+        </span>
+        <span class="hidden sm:inline text-[var(--border-subtle)]">•</span>
+        <span class="text-emerald-700 dark:text-emerald-400">
+          ZERO TELEMETRY // PRIVACY FIRST
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,152 @@
+/* Brand DNA // The Invisible Instrument — Visual Design System Tokens */
+
+:root {
+  --background: #F4EFE6;
+  --foreground: #0A0A0A;
+  --surface: #EDE8DE;
+  --surface-raised: #F9F6F0;
+  --border: #0A0A0A;
+  --border-subtle: rgba(10, 10, 10, 0.18);
+  --accent: #8B1A1A;
+  --accent-fg: #F4EFE6;
+  --muted: rgba(10, 10, 10, 0.68);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-mono: "Courier Prime", monospace;
+  --font-body: "Libre Baskerville", Georgia, serif;
+}
+
+.dark,
+[data-theme="dark"] {
+  --background: #0A0A0A;
+  --foreground: #F4EFE6;
+  --surface: #141414;
+  --surface-raised: #1A1A1A;
+  --border: #F4EFE6;
+  --border-subtle: rgba(244, 239, 230, 0.18);
+  --accent: #C0392B;
+  --accent-fg: #0A0A0A;
+  --muted: rgba(244, 239, 230, 0.68);
+}
+
+* {
+  border-radius: 0px !important;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.85'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
+
+.dark body::before,
+[data-theme="dark"] body::before,
+body.dark::before {
+  mix-blend-mode: overlay;
+  opacity: 0.05;
+}
+
+::selection {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-ui {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+}
+
+.font-editorial-body {
+  font-family: var(--font-body);
+}
+
+.btn-bracketed {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.btn-bracketed:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.btn-bracketed-primary {
+  background: var(--foreground);
+  color: var(--background);
+  border: 1px solid var(--foreground);
+}
+
+.btn-bracketed-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+}
+
+.border-hairline {
+  border-color: var(--border-subtle);
+}
+
+.border-ink {
+  border-color: var(--border);
+}
+
+.glass-editorial {
+  background: rgba(237, 232, 222, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-subtle);
+}
+
+.dark .glass-editorial,
+[data-theme="dark"] .glass-editorial {
+  background: rgba(20, 20, 20, 0.70);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-subtle);
+}

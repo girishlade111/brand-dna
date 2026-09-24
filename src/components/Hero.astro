@@ -1,0 +1,145 @@
+---
+const appUrl = import.meta.env.PUBLIC_APP_URL || "/app";
+---
+
+<section class="relative pt-16 pb-12 md:pt-24 md:pb-16 border-b border-[var(--border-subtle)] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl">
+      <!-- Eyebrow -->
+      <div class="inline-flex items-center gap-2 mb-6">
+        <span class="w-1.5 h-1.5 bg-[var(--accent)]"></span>
+        <span class="font-mono-ui text-xs font-bold uppercase tracking-[0.20em] text-[var(--muted)]">
+          // PRECISION DESIGN SYSTEM EXTRACTOR
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl font-normal tracking-[-0.02em] leading-[0.96] text-[var(--foreground)] mb-6">
+        Steal any brand.<br />
+        <span class="italic font-light opacity-60">Leave nothing behind.</span>
+      </h1>
+
+      <!-- Lede Prose -->
+      <p class="font-editorial-body text-lg sm:text-xl text-[var(--muted)] max-w-2xl leading-relaxed mb-8">
+        Colors. Typography. Voice. Tokens. Extracted from any live URL, vector PDF, or brand asset, verified against WCAG accessibility standards, and exported into production code in seconds.
+      </p>
+
+      <!-- Simulated Extraction Input Box -->
+      <div class="glass-editorial p-2 sm:p-3 mb-2 max-w-2xl border border-[var(--border)] relative">
+        <form id="hero-extract-form" class="flex flex-col sm:flex-row items-stretch gap-2">
+          <div class="flex-1 flex items-center bg-[var(--background)] border border-[var(--border-subtle)] px-3 py-2.5">
+            <span class="font-mono-ui text-xs text-[var(--muted)] mr-2 select-none">URL:</span>
+            <input
+              id="hero-url-input"
+              type="text"
+              value="https://stripe.com"
+              class="w-full bg-transparent font-mono-ui text-xs text-[var(--foreground)] focus:outline-none placeholder:text-[var(--muted)]"
+              placeholder="e.g. https://stripe.com, https://linear.app, or pdf"
+              aria-label="Target brand URL"
+            />
+          </div>
+          <button
+            id="hero-extract-button"
+            type="submit"
+            class="btn-bracketed btn-bracketed-primary sm:w-auto text-center"
+          >
+            <span>[ EXTRACT BRAND ]</span>
+          </button>
+        </form>
+
+        <!-- Ink-Sweep Animation Overlay -->
+        <div
+          id="hero-ink-sweep"
+          class="hidden absolute inset-0 bg-[var(--foreground)] z-20 pointer-events-none items-center justify-center text-[var(--background)] font-mono-ui text-xs tracking-[0.2em] transition-opacity duration-300"
+        >
+          [ DEEP CRAWLING DOM & TOKENS... ]
+        </div>
+      </div>
+
+      <!-- Early Pricing Signal Microcopy -->
+      <div class="font-mono-ui text-[11px] text-[var(--muted)] mb-4 flex items-center gap-2">
+        <span class="w-1.5 h-1.5 bg-[var(--accent)] inline-block select-none"></span>
+        <span>No signup required — 1 free extraction, full W3C token export.</span>
+      </div>
+
+      <!-- Preset Chips & Trademark / Affiliation Disclaimer -->
+      <div class="mb-6 space-y-2">
+        <div class="flex flex-wrap items-center gap-2 font-mono-ui text-[10px] text-[var(--muted)]">
+          <span class="uppercase tracking-wider mr-1">TRY PRESETS:</span>
+          <button
+            type="button"
+            data-preset="https://stripe.com"
+            class="hero-preset-btn px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--surface)] hover:text-[var(--foreground)] transition-colors"
+          >
+            [ STRIPE.COM ]
+          </button>
+          <button
+            type="button"
+            data-preset="https://linear.app"
+            class="hero-preset-btn px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--surface)] hover:text-[var(--foreground)] transition-colors"
+          >
+            [ LINEAR.APP ]
+          </button>
+          <button
+            type="button"
+            data-preset="https://vercel.com"
+            class="hero-preset-btn px-2 py-0.5 border border-[var(--border-subtle)] bg-[var(--surface)] hover:text-[var(--foreground)] transition-colors"
+          >
+            [ VERCEL.COM ]
+          </button>
+        </div>
+
+        <!-- Trademark / Affiliation Disclaimer -->
+        <div class="font-mono-ui text-[10px] text-[var(--muted)] tracking-wider uppercase flex items-center gap-2">
+          <span class="opacity-40">•</span>
+          <span>Demo extractions only — not affiliated with or endorsed by the brands shown.</span>
+        </div>
+      </div>
+
+      <!-- Verification Badges -->
+      <div class="flex flex-wrap items-center gap-3 sm:gap-4 font-mono-ui text-[11px] text-[var(--muted)]">
+        <span class="border border-[var(--border-subtle)] px-2.5 py-1 tracking-[0.10em]">
+          [ ✓ WCAG 2.1 AA/AAA ]
+        </span>
+        <span class="border border-[var(--border-subtle)] px-2.5 py-1 tracking-[0.10em]">
+          [ ✓ GOOGLE FONTS SYNC ]
+        </span>
+        <span class="border border-[var(--border-subtle)] px-2.5 py-1 tracking-[0.10em]">
+          [ ✓ 6 EXPORT FORMATS ]
+        </span>
+        <span class="border border-[var(--border-subtle)] px-2.5 py-1 tracking-[0.10em]">
+          [ ✓ ZERO RUNTIME DEPENDENCY ]
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const heroForm = document.getElementById('hero-extract-form');
+  const inkSweep = document.getElementById('hero-ink-sweep');
+  const urlInput = document.getElementById('hero-url-input');
+
+  if (heroForm && inkSweep) {
+    heroForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      inkSweep.classList.remove('hidden');
+      inkSweep.classList.add('flex');
+      
+      const targetBrand = urlInput?.value || 'https://stripe.com';
+      window.dispatchEvent(new CustomEvent('brand-dna-extract', { detail: { url: targetBrand } }));
+
+      setTimeout(() => {
+        inkSweep.classList.add('opacity-0');
+        setTimeout(() => {
+          inkSweep.classList.remove('flex', 'opacity-0');
+          inkSweep.classList.add('hidden');
+          const workbenchEl = document.getElementById('workbench');
+          if (workbenchEl) {
+            workbenchEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300);
+      }, 700);
+    });
+  }
+</script>

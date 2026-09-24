@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import SocialProofStrip from '../components/SocialProofStrip.astro';
+import WorkbenchDemo from '../components/WorkbenchDemo.astro';
+import FeatureMatrix from '../components/FeatureMatrix.astro';
+import ExportShowcase from '../components/ExportShowcase.astro';
+import Architecture from '../components/Architecture.astro';
+import Comparison from '../components/Comparison.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Brand DNA // The Invisible Instrument — Precision Design System Extractor"
+  description="Precision AI-powered brand design system extractor and token workbench converting URLs, PDFs, and assets into production design systems in seconds."
+>
+  <Header />
+  <main class="flex-grow">
+    <Hero />
+    <SocialProofStrip />
+    <WorkbenchDemo />
+    <FeatureMatrix />
+    <ExportShowcase />
+    <Architecture />
+    <Comparison />
+    <CtaBanner />
+  </main>
+  <Footer />
+</Layout>

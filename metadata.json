@@ -1,0 +1,6 @@
+{
+  "name": "Brand DNA // The Invisible Instrument",
+  "description": "Precision AI-powered brand design system extractor and token workbench converting URLs, PDFs, and assets into production-ready WCAG-verified design tokens.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
