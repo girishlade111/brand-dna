@@ -1,0 +1,24 @@
+# Brand DNA // The Invisible Instrument — robots.txt
+# Public Design Token Infrastructure & Marketing Routes
+
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /privacy-policy
+Allow: /terms-and-conditions
+Allow: /contact
+Allow: /build
+Allow: /library
+Allow: /compare
+Allow: /design
+
+# Disallow private user-generated kits, dynamic share links, and backend endpoints
+Disallow: /kit/
+Disallow: /kit/*
+Disallow: /share/
+Disallow: /share/*
+Disallow: /api/
+Disallow: /api/*
+
+# XML Sitemap Reference
+Sitemap: https://branddna.design/sitemap.xml
