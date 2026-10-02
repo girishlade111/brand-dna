@@ -297,3 +297,8 @@ Support: support@branddna.design
 ## License
 
 This project is **UNLICENSED / All rights reserved** unless otherwise noted. Contact the author for usage permission.
+
+
+---
+
+**Built by [Girish Lade](https://ladestack.in)** — founder of [LadeStack](https://ladestack.in).
